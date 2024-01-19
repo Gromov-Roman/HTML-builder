@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { writeFile, appendFile } = require('fs');
 const path = require('path');
 
 const { stdin, stdout } = process;
@@ -17,7 +17,7 @@ const goodbye = `\n${colors.blue}Have a good day!${colors.default}`;
 const continueStart = `\n${colors.green}The text:${colors.white}`;
 const continueEnd = `${colors.green}have written to a file, you can continue typing:${colors.default}\n`;
 
-fs.writeFile(path.join(__dirname, fileName), '', (error) => {
+writeFile(path.join(__dirname, fileName), '', (error) => {
   if (error) {
     throw error;
   }
@@ -36,7 +36,7 @@ stdin.on('data', (data) => {
     return;
   }
 
-  fs.appendFile(path.join(__dirname, fileName), data, (error) => {
+  appendFile(path.join(__dirname, fileName), data, (error) => {
     if (error) {
       throw error;
     }

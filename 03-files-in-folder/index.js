@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { readdir, stat } = require('fs');
 const path = require('path');
 
 const folderPath = path.join(__dirname, 'secret-folder');
@@ -13,7 +13,7 @@ const colors = {
 
 const colorsArr = [colors.yellow, colors.blue, colors.green, colors.white];
 
-fs.readdir(folderPath, { withFileTypes: true }, (error, files) => {
+readdir(folderPath, { withFileTypes: true }, (error, files) => {
   if (error) {
     throw error;
   }
@@ -24,7 +24,7 @@ fs.readdir(folderPath, { withFileTypes: true }, (error, files) => {
 
   let colorIndex = 0;
   fileNames.forEach((name) => {
-    fs.stat(path.join(folderPath, name), (error, stats) => {
+    stat(path.join(folderPath, name), (error, stats) => {
       if (error) {
         throw error;
       }
