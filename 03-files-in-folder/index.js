@@ -36,7 +36,7 @@ readdir(folderPath, { withFileTypes: true }, (error, files) => {
       const start = hidden ? '' : baseName;
       const ext = hidden ? baseName.slice(1) : extName.slice(1);
       const size = stats.size
-        ? (stats.size / 8 / 1024).toFixed(2).toString() + 'kb'
+        ? (stats.size / 1024).toFixed(2).toString() + 'kb'
         : '0kb';
 
       const color = colorsArr[colorIndex];
