@@ -4,7 +4,6 @@ const {
   appendFile,
   copyFile,
   readdir,
-  stat,
   mkdir,
   unlink,
   promises,
@@ -134,18 +133,12 @@ const buildStyles = () => {
       .filter((file) => file.isFile() && isCss(file.name))
       .map((file) => file.name)
       .forEach((name) => {
-        stat(path.join(baseStyles, name), (err) => {
+        readFile(path.join(baseStyles, name), 'utf-8', (err, content) => {
           if (err) {
             throw err;
           }
 
-          readFile(path.join(baseStyles, name), 'utf-8', (err, content) => {
-            if (err) {
-              throw err;
-            }
-
-            addContent(content);
-          });
+          addContent(content);
         });
       });
   });
